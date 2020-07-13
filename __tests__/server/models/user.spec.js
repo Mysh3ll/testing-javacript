@@ -20,5 +20,7 @@ describe('The User model', () => {
         const createdUser = await User.create(user);
 
         expect(Bcrypt.compareSync(user.password, createdUser.password)).toBe(true);
+
+        await Mongoose.connection.close();
     });
 });
