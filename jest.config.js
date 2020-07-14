@@ -4,4 +4,6 @@ module.exports = {
         '.*\\.(vue)$': 'vue-jest'
     },
     snapshotSerializers: ['jest-serializer-vue'],
+    testPathIgnorePatterns: ['/utils/'],
+    testTimeout: 30000
 }

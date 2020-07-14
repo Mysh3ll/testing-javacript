@@ -2,22 +2,9 @@
  * @jest-environment node
  */
 import User from '@models/User';
-import Mongoose from 'mongoose';
-import config from '@server/config'
-import jwt from 'jsonwebtoken';
+import { connect, disconnect } from "@tests/utils/mongoose";
+import Response from '@tests/utils/response';
 import authMiddleware from '@middleware/auth';
-
-class Response {
-    status(status) {
-        this.status = status;
-
-        return this;
-    }
-
-    json(data) {
-        return data;
-    }
-}
 
 describe('The auth middleware', () => {
     const user = {
@@ -29,7 +16,7 @@ describe('The auth middleware', () => {
     let createdUser;
 
     beforeAll(async () => {
-        await Mongoose.connect(config.databaseUrl[config.environment], { useNewUrlParser: true, useUnifiedTopology: true });
+        await connect();
 
         createdUser = await User.create(user);
     });
@@ -74,6 +61,6 @@ describe('The auth middleware', () => {
     });
 
     afterAll(async () => {
-        await Mongoose.connection.close();
+        await disconnect();
     });
 });

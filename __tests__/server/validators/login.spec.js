@@ -3,18 +3,7 @@
  */
 
 import loginValidator from '@validators/login';
-
-class Response {
-    status(status) {
-        this.status = status;
-
-        return this;
-    }
-
-    json(data) {
-        return data;
-    }
-}
+import Response from '@tests/utils/response';
 
 describe('The login validator', () => {
 

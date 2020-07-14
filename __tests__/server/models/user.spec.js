@@ -2,9 +2,9 @@
  * @jest-environment node
  */
 import User from '@models/User';
-import Mongoose from 'mongoose';
-import Bcrypt from 'bcryptjs';
+import { connect, disconnect } from "@tests/utils/mongoose";
 import config from '@server/config'
+import Bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 describe('The User model', () => {
@@ -17,7 +17,7 @@ describe('The User model', () => {
     let createdUser;
 
     beforeAll(async () => {
-        await Mongoose.connect(config.databaseUrl[config.environment], { useNewUrlParser: true, useUnifiedTopology: true });
+        await connect();
 
         createdUser = await User.create(user);
     });
@@ -42,6 +42,6 @@ describe('The User model', () => {
     });
 
     afterAll(async () => {
-        await Mongoose.connection.close();
+        await disconnect();
     });
 });
