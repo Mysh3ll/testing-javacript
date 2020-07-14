@@ -23,6 +23,7 @@
             <logo />
             <div class="lg:inline-block" v-if="!auth">
                 <router-link
+                    id="login-button"
                     to="/auth/login"
                     class="no-underline text-white mr-6 text-brown hover:text-brown-darkest trans-30"
                 >
@@ -30,6 +31,7 @@
                 </router-link>
 
                 <router-link
+                    id="register-button"
                     to="/auth/register"
                     class="no-underline focus:outline-none text-white px-3 py-2 border-2 inline border-brown hover:border-brown-darkest rounded-full text-brown hover:text-brown-darkest trans-30"
                 >
